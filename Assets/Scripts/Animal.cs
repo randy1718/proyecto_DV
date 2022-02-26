@@ -6,6 +6,8 @@ public class Animal : MonoBehaviour
 {
     Rigidbody2D myBody;
     [SerializeField] float speed;
+    [SerializeField] float vida = 6;
+    PhysicsMaterial2D material;
     float minX, minY, maxX, maxY;
 
     // Start is called before the first frame update
@@ -45,16 +47,61 @@ public class Animal : MonoBehaviour
             Mathf.Clamp(transform.position.x, minX + (transform.localScale.x / 1.5f), maxX - (transform.localScale.x / 1.5f)),
             Mathf.Clamp(transform.position.y, minY + (transform.localScale.y / 1.5f), maxY - (transform.localScale.y / 1.5f))
             );
-        
 
-        Debug.Log(maxX);
-        Debug.Log(maxX - (transform.localScale.x / 2));
+
+        //Debug.Log(maxX);
+        //Debug.Log(maxX - (transform.localScale.x / 2));
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Colisionando con:");
-        Debug.Log(collision.gameObject.name);
+        Debug.Log("whattt");
+        if (collision.gameObject.name == "Bullet(Clone)")
+        {
+            Destroy(collision.gameObject);
+
+            vida -= 1;
+            if (vida == 0)
+            {
+                Destroy(gameObject);
+            }
+            Debug.Log("Pierde vida");
+            Debug.Log(vida);
+        }else if (collision.gameObject.name == "powerBullet(Clone)")
+        {
+            Destroy(collision.gameObject);
+
+            vida = 0;
+            if (vida == 0)
+            {
+                Destroy(gameObject);
+            }
+            Debug.Log("Pierde vida");
+            Debug.Log(vida);
+        }
     }
+
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("Colisionando con:");
+        //Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name == "Bullet(Clone)")
+        {
+            Destroy(collision.gameObject);
+            material.bounciness = 0;
+            
+
+            if (vida == 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                vida -= 1;
+                Debug.Log("Pierde vida");
+                Debug.Log(vida);
+            }
+        }
+    }*/
 
 }
