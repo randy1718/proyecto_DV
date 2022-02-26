@@ -76,7 +76,7 @@ public class game : MonoBehaviour
             Debug.Log("Numero: " + contador);
             Debug.Log("Time: " + Time.time);
 
-            if (Time.time >= contador+3.0f)
+            if (Time.time >= contador+3.0f && Time.time < contador + 3.1f)
             {
                 if (modoDisparo == 2)
                 {
