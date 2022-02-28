@@ -42,8 +42,8 @@ public class game : MonoBehaviour
 
 
         transform.Translate(new Vector2(dirH * speed * Time.deltaTime, dirV * speed * Time.deltaTime));
-        Debug.Log(Time.time);
-        Debug.Log(timer);
+        //Debug.Log(Time.time);
+        //Debug.Log(timer);
 
         transform.position = new Vector2(
             Mathf.Clamp(transform.position.x, minX+(transform.localScale.x / 1.5f), maxX - (transform.localScale.x / 1.5f)),
@@ -52,7 +52,7 @@ public class game : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("Oprimiendo Q");
+            //Debug.Log("Oprimiendo Q");
             if (modoDisparo == 1)
             {
                 modoDisparo = 2;
@@ -63,34 +63,33 @@ public class game : MonoBehaviour
             }
         }
 
-        Debug.Log(modoDisparo);
+        Debug.Log("MODO DE DISPARO:" + modoDisparo);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (modoDisparo == 2)
         {
-            contador = Time.time;
-        }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Debug.Log("Oprimiendo");
-            Debug.Log("Numero: " + contador);
-            Debug.Log("Time: " + Time.time);
-
-            if (Time.time >= contador+3.0f && Time.time < contador + 3.1f)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (modoDisparo == 2)
+                contador = Time.time;
+            }
+
+            while (Input.GetKey(KeyCode.Space))
+            {
+                Debug.Log("Oprimiendo");
+                Debug.Log("Numero: " + contador);
+                Debug.Log("Time: " + Time.time);
+
+                if (Time.time >= contador + 3.0f && Time.time < contador + 3.1f)
                 {
                     Instantiate(PowerBullet, transform.position, transform.rotation);
                     contador = -Time.time;
                 }
             }
         }
-
-            if (Input.GetKeyDown(KeyCode.Space) && Time.time > timer)
+        if (modoDisparo == 1)
         {
-            timer = Time.time + intervaloSeg;
-            if (modoDisparo == 1)
+            if (Input.GetKeyDown(KeyCode.Space) && Time.time > timer)
             {
+                timer = Time.time + intervaloSeg;
                 Instantiate(bullet, transform.position, transform.rotation);
             }
             /*else if(modoDisparo == 2)

@@ -435,6 +435,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   bullet: {fileID: 8425615738764864784, guid: 4cfa9ae7bf8a6f14890349134488a950, type: 3}
+  PowerBullet: {fileID: 2086815574514396166, guid: 155e791afe50ebd4a88a4a40c33bf1d1, type: 3}
+  intervaloSeg: 2
 --- !u!212 &1375414933
 SpriteRenderer:
   m_ObjectHideFlags: 0
