@@ -11,10 +11,10 @@ public class game : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject PowerBullet;
     float timer;
-    [SerializeField] float intervaloSeg;
+    [SerializeField] float intervaloSeg = 1;
     float modoDisparo = 1;
     float contador;
-
+    bool ready = false;
     float minX, minY, maxX, maxY;
 
     // Start is called before the first frame update
@@ -72,7 +72,7 @@ public class game : MonoBehaviour
                 contador = Time.time;
             }
 
-            while (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 Debug.Log("Oprimiendo");
                 Debug.Log("Numero: " + contador);
