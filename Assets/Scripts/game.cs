@@ -13,8 +13,8 @@ public class game : MonoBehaviour
     float timer;
     [SerializeField] float intervaloSeg = 1;
     float modoDisparo = 1;
-    float contador;
-    bool ready = false;
+    float contador; 
+    bool held = false;
     float minX, minY, maxX, maxY;
 
     // Start is called before the first frame update
@@ -56,15 +56,16 @@ public class game : MonoBehaviour
             if (modoDisparo == 1)
             {
                 modoDisparo = 2;
+                Debug.Log("MODO DE DISPARO:" + modoDisparo);
             }
             else
             {
                 modoDisparo = 1;
+                Debug.Log("MODO DE DISPARO:" + modoDisparo);
             }
         }
 
-        Debug.Log("MODO DE DISPARO:" + modoDisparo);
-
+        
         if (modoDisparo == 2)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -72,18 +73,25 @@ public class game : MonoBehaviour
                 contador = Time.time;
             }
 
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && held == false)
             {
                 Debug.Log("Oprimiendo");
                 Debug.Log("Numero: " + contador);
                 Debug.Log("Time: " + Time.time);
 
-                if (Time.time >= contador + 3.0f && Time.time < contador + 3.1f)
+                if (Time.time >= contador + 3.0f)
                 {
-                    Instantiate(PowerBullet, transform.position, transform.rotation);
-                    contador = -Time.time;
+                    held = true;
+                    Debug.Log("DISPARO LISTO!");
                 }
             }
+
+            if (Input.GetKeyUp(KeyCode.Space) && held == true)
+            {
+                Instantiate(PowerBullet, transform.position, transform.rotation);
+                held = false;
+            }
+
         }
         if (modoDisparo == 1)
         {

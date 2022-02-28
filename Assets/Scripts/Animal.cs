@@ -55,7 +55,6 @@ public class Animal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("whattt");
         if (collision.gameObject.name == "Bullet(Clone)")
         {
             Destroy(collision.gameObject);
@@ -65,8 +64,8 @@ public class Animal : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            Debug.Log("Pierde vida");
-            Debug.Log(vida);
+            Debug.Log("Pierde 1 vida " + gameObject.name +" JEJEJE");
+            Debug.Log("Le quedan: " + vida + " vidas!");
         }else if (collision.gameObject.name == "powerBullet(Clone)")
         {
             Destroy(collision.gameObject);
@@ -76,8 +75,7 @@ public class Animal : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            Debug.Log("Pierde vida");
-            Debug.Log(vida);
+            Debug.Log("MUERE " +gameObject.name+" JA JA JA");
         }
     }
 

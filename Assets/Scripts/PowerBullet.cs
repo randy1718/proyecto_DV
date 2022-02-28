@@ -18,6 +18,7 @@ public class PowerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("AHGGGGG FALLE!");
         if (collision.gameObject.name == "Square")
         {
             Destroy(gameObject);
